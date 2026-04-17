@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Hotel Frissman Marcala | Hospedaje y Experiencias</title>
+    <!-- Font Awesome (iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #d5dce2;
+            color: #1e2a2e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+      
+        h1, h2, h3, h4, .logo, .nav-links a, .hero-title, .btn, .section-title {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+     
+        .top-cms-bar {
+            background: #1e2a2e;
+            color: #f4c542;
+            padding: 8px 0;
+            font-size: 0.85rem;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .main-header {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-flex {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 0;
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 12px;
+        }
+
+        .logo i {
+            font-size: 2.8rem;
+            color: #b36b2a;
+            margin-bottom: 6px;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #b36b2a;
+            letter-spacing: 1px;
+        }
+
+        .logo p {
+            font-size: 0.8rem;
+            color: #5e5b55;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 8px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #2c3e2f;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: #b36b2a;
+            border-bottom-color: #b36b2a;
+        }
+
+        /* Botones rectangulares / ligeramente redondeados (poco) */
+        .btn {
+            display: inline-block;
+            background-color: #b36b2a;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .btn:hover {
+            background-color: #8b4b26;
+            transform: scale(0.98);
+        }
+
+        /* Hero sin redondeos */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('4.jpg') center/cover no-repeat;
+            min-height: 520px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 0;
+        }
+
+        .hero-content {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        /* Secciones con colores alternados */
+        section {
+            padding: 70px 0;
+        }
+
+        .bg-claro {
+            background-color: #ffffff;
+        }
+
+        .bg-beige {
+            background-color: #fef6e8;
+        }
+
+        .bg-softgreen {
+            background-color: #eaf7ea;
+        }
+
+        .bg-gris {
+            background-color: #f2f2f0;
+        }
+
+        .bg-crema {
+            background-color: #fff7ef;
+        }
+
+        .bg-miel {
+            background-color: #fff1e2;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #3a2c24;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 3px;
+            background: #b36b2a;
+            margin: 12px auto 0;
+        }
+
+      
+        .grid-2cols {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+
+        .info-card {
+            background: white;
+            padding: 28px;
+            border-radius: 6px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.03);
+            border: 1px solid #eee;
+        }
+
+        .hotel-img, .prop-card img, .ficha-img img {
+            width: 100%;
+            border-radius: 6px;
+            object-fit: cover;
+            display: block;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .ficha-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            background: white;
+            padding: 30px;
+            border-radius: 6px;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+        }
+
+        .propuestas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 30px;
+        }
+
+        .prop-card {
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: 0.2s;
+        }
+
+        .prop-card img {
+            height: 200px;
+            width: 100%;
+        }
+
+        .prop-card h4 {
+            margin: 18px 20px 8px;
+        }
+
+        .prop-card p {
+            margin: 0 20px 20px;
+            color: #4a5b5e;
+        }
+
+       
+        .search-box {
+            background: #e8e2d4;
+            padding: 35px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .search-form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .search-form input, .search-form select {
+            padding: 12px 18px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            min-width: 190px;
+        }
+
+        
+        .reserva-form {
+            background: white;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 35px;
+            border-radius: 6px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: 1px solid #d4cfc3;
+            font-family: Arial, sans-serif;
+        }
+
+        .newsletter {
+            background: #2d4a3b;
+            color: white;
+            padding: 50px 30px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .newsletter-input {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .newsletter-input input {
+            padding: 12px 20px;
+            width: 280px;
+            border-radius: 6px;
+            border: none;
+        }
+
+      
+        .contact-maps {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            border-radius: 6px;
+            height: 340px;
+            border: 0;
+        }
+
+        .contact-form-depart {
+            background: white;
+            padding: 25px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        footer {
+            background: #1e2a2e;
+            color: #ddceb5;
+            text-align: center;
+            padding: 30px;
+            margin-top: 0;
+        }
+
+        @media (max-width: 860px) {
+            .contact-maps {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="top-cms-bar">ALUMONOS ISEMED 21 DE OCTUUBRE
+</div>
+
+<header class="main-header">
+    <div class="container header-flex">
+        <div class=">
+            <i class="fas fa-hotel"></i>
+            <h1>HOTEL FRISSMAN MARCALA</h1>
+            <p>Confort, tradición y montaña en el corazón de Honduras</p>
+        </div>
+        <div class="nav-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#informacion-hotel">El Hotel</a>
+            <a href="#ficha">Ficha</a>
+            <a href="#disfruta">Disfruta</a>
+            <a href="#promociones">Promociones</a>
+            <a href="#buscador">Buscador</a>
+            <a href="#reservas">Reservas</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </div>
+</header>
+
+<main>
+   
+    <section id="inicio" class="hero">
+        <div class="container hero-content">
+            <h1 class="hero-title">Bienvenido a Hotel Frissman Marcala</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">Descanso rodeado de café, montañas y calidez hondureña. Vive una experiencia única en el occidente de Honduras.</p>
+            <a href="#reservas" class="btn">Reservar ahora</a>
+            <a href="#informacion-hotel" class="btn btn-outline" style="margin-left: 12px;">Conoce el hotel</a>
+        </div>
+    </section>
+
+ 
+    <section id="informacion-hotel" class="bg-beige">
+        <div class="container">
+            <h2 class="section-title">Hotel Frissman Marcala</h2>
+            <div class="grid-2cols">
+                <div class="info-card">
+                    <i class="fas fa-mountain" style="font-size: 2.2rem; color: #b36b2a;"></i>
+                    <h3 style="margin: 15px 0;">INFORMACION DE NUESTRO HOTEL</h3>
+                    <p>El Hotel Frissman es un hotel familiar ubicado en la calle principal de Marcala, La Paz, Honduras, muy cerca del centro del pueblo. Ofrece habitaciones sencillas, dobles y triples, con servicios básicos como baño privado, TV y en algunos casos aire acondicionado. Cuenta con restaurante, WiFi y espacios para eventos, lo que lo hace práctico para visitantes y viajeros. Es conocido por su buena atención y precios accesibles, aunque sus instalaciones son sencillas. En general, es una opción económica y funcional para hospedarse en Marcala.
+</p>
+                   
+                </div>
+                <div>
+                    <img class="hotel-img" src="6.jpg" alt="Fachada Hotel Frissman">
+                    <p style="margin-top: 12px; font-style: italic;"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <section id="ficha" class="bg-claro">
+        <div class="container">
+            <h2 class="section-title">Ficha de Habitación: Habitacion triple</h2>
+            <div class="ficha-grid">
+                <div class="ficha-img">
+                    <img class="hotel-img" src="14.jpg" alt="Habitación Deluxe">
+                </div>
+                <div class="ficha-details">
+                    <h3>Habitación Premium Vista Montaña</h3>
+                    <ul style="list-style: none; margin: 20px 0;">
+                        <li style="margin: 12px 0;"><i class="fas fa-bed"></i> 1 Cama King size o 2 Dobles</li>
+                        <li style="margin: 12px 0;"><i class="fas fa-hot-tub"></i> Bañera con hidromasaje</li>
+                        <li style="margin: 12px 0;"><i class="fas fa-tv"></i> TV LED 50" + cable</li>
+                        <li style="margin: 12px 0;"><i class="fas fa-coffee"></i> Cafetera con café orgánico de Marcala</li>
+                        <li style="margin: 12px 0;"><i class="fas fa-mountain"></i> Balcón privado con hamaca</li>
+                    </ul>
+                    <p><strong>Precio desde:</strong> 1,800 Lempiras (HNL) / noche</p>
+                    <a href="#reservas" class="btn" style="margin-top: 15px; display: inline-block;">Reservar esta suite</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="disfruta" class="bg-softgreen">
+        <div class="container">
+            <h2 class="section-title">Disfruta · Experiencias en Marcala</h2>
+            <div class="propuestas-grid">
+                <div class="prop-card">
+                    <img src="16.jpg" alt="Spa Frissman">
+                    <h4>Pisina Relajación</h4>
+                    <p>Masajes con productos naturales, temazcal y sauna. Perfecto para renovar energías.</p>
+                </div>
+                <div class="prop-card">
+                    <img src="34.jpg" alt="Gastronomía">
+                    <h4 Gastronomía</h4>
+                    <p>TNuestra gastronomia esla mejor aqui podras tenes muchas clases de comidas tipicas que quedaras encantando </p>
+                </div>
+                <div class="prop-card">
+                    <img src="33.jpg" alt="Senderismo">
+                    <h4>Aventura en Montaña</h4>
+                    <p>Puedes ospedarte en el hotel y salr a visitar los luagres turisticos</p>
+                </div>
+                    <div class="prop-card">
+                    <img src="227.jpg" alt="Senderismo">
+                    <h4>vista por la novhe</h4>
+                    <p>Podras dusfrutar de una noche espectacular en nuestro hotel con todo lo necesatio para que no exxtrañes tu casa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <section id="promociones" class="bg-crema">
+        <div class="container">
+            <h2 class="section-title">Promociones Exclusivas</h2>
+            <div class="propuestas-grid">
+                <div class="prop-card">
+                    <img src="22.jpg" alt="Early Bird">
+                    <h3>Dos cama por una abitacion</h3>
+                    <p>Reserva con 15 días de anticipación y obtén 20% de descuento + desayuno buffet. <strong>Desde 2,240 Lps/noche</strong></p>
+                </div>
+                <div class="prop-card">
+                    <img src="23.jpg" alt="Romance">
+                    <h3>Escape Romántico</h3>
+                    <p>Cena a la luz de las velas, masaje para dos y late check-out. Precio especial 3,500 Lps la noche.</p>
+                </div>
+                <div class="prop-card">
+                    <img src="24.jpg" alt="Familia">
+                    <h3>Familiar 3x2</h3>
+                    <p>Niños menores de 10 años sin costo adicional. Incluye acceso a piscina y actividades recreativas.</p>
+                </div>
+                 <div class="prop-card">
+                    <img src="25.jpg" alt="Familia">
+                    <h3>Familiar 3x2</h3>
+                    <p>Niños menores de 10 años sin costo adicional. Incluye acceso a piscina y actividades recreativas.</p>
+                </div>
+                 <div class="prop-card">
+                    <img src="26.jpg" alt="Familia">
+                    <h3>Familiar 3x2</h3>
+                    <p>Niños menores de 10 años sin costo adicional. Incluye acceso a piscina y actividades recreativas.</p>
+                </div>
+                 <div class="prop-card">
+                    <img src="227.jpg" alt="Familia">
+                    <h3>noches en hotel Pirsman</h3>
+                    <p>disfrutaras de una hermosa noches con vista a tod o marcala  desde la terraza</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="buscador" class="bg-gris">
+        <div class="container">
+            <h2 class="section-title">Buscador de Disponibilidad</h2>
+            <div class="search-box">
+                <form id="searchForm" class="search-form">
+                    <input type="date" id="fechaInicio" required> 
+                    <input type="date" id="fechaFin" required>
+                    <select id="huespedes">
+                        <option value="1">1 Adulto</option>
+                        <option value="2" selected>2 Adultos</option>
+                        <option value="3">3 Adultos</option>
+                        <option value="4">4 Adultos</option>
+                    </select>
+                    <button type="submit" class="btn">Buscar habitación</button>
+                </form>
+                <div id="searchResult" style="margin-top: 20px; font-weight: 500;"></div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="reservas" class="bg-miel">
+        <div class="container">
+            <h2 class="section-title">Reservas Online</h2>
+            <div class="reserva-form">
+                <form id="bookingForm">
+                    <div class="form-group"><input type="text" id="nombre" placeholder="Nombre completo" required></div>
+                    <div class="form-group"><input type="email" id="email" placeholder="Correo electrónico" required></div>
+                    <div class="form-group"><input type="date" id="checkin" required></div>
+                    <div class="form-group"><input type="date" id="checkout" required></div>
+                    <div class="form-group">
+                        <select id="habitacion">
+                            <option>Suite Cafetalera (2,800 Lps/noche)</option>
+                            <option>Habitación Estándar (1,900 Lps/noche)</option>
+                            <option>Habitación Familiar (2,400 Lps/noche)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Solicitar Reserva</button>
+                    <p id="formFeedback" style="margin-top: 16px; font-size:0.9rem;"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-claro">
+        <div class="container">
+            <div class="newsletter">
+                <i class="fas fa-envelope-open-text" style="font-size: 2rem;"></i>
+                <h3>Suscríbete a nuestra Newsletter</h3>
+                <p>Recibe ofertas exclusivas y novedades del Hotel Frissman Marcala.</p>
+                <div class="newsletter-input">
+                    <input type="email" id="newsEmail" placeholder="Tu correo electrónico">
+                    <button id="newsBtn" class="btn">Suscribirme</button>
+                </div>
+                <div id="newsMsg" style="margin-top: 12px;"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contacto" class="bg-beige">
+        <div class="container">
+            <h2 class="section-title">Contacto & Ubicación</h2>
+            <div class="contact-maps">
+                <div class="map-container">
+                    <!-- Mapa exacto del Hotel Frissman Marcala según coordenadas proporcionadas -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7001.715276753727!2d-88.0373414!3d14.161146899999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6505b8be822ee7%3A0xd184eaf13be005e1!2sHotel%20Frissman!5e1!3m2!1ses-419!2sus!4v1776388615307!5m2!1ses-419!2sus" width="600" height="450" style="border:0; width:100%; border-radius:6px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="contact-form-depart">
+                    <h3>Escríbenos por departamento</h3>
+                    <form id="contactFormDept">
+                        <div class="form-group"><input type="text" id="contactName" placeholder="Nombre completo" required></div>
+                        <div class="form-group"><input type="email" id="contactEmail" placeholder="Correo electrónico" required></div>
+                        <div class="form-group">
+                            <select id="department">
+                                <option value="reservas">Reservas</option>
+                                <option value="eventos">Eventos y Bodas</option>
+                                <option value="atencion">Atención al Cliente</option>
+                                <option value="comercial">Departamento Comercial</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><textarea rows="3" id="msgContact" placeholder="Escriba su mensaje aquí..." required></textarea></div>
+                        <button type="submit" class="btn">Enviar mensaje</button>
+                        <p id="contactFeedback" style="margin-top: 12px;"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>  </p>
+</footer>
+<script>
+
+    // Buscador simulado
+    document.getElementById('searchForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const resultDiv = document.getElementById('searchResult');
+        resultDiv.innerHTML = '✅ Hay disponibilidad para las fechas seleccionadas. ¡Contamos con habitaciones en Hotel Frissman! Precios desde 1,900 Lempiras.';
+        resultDiv.style.color = '#2c6e2f';
+        resultDiv.style.background = '#e9f5e6';
+        resultDiv.style.padding = '10px';
+        resultDiv.style.borderRadius = '6px';
+    });
+
+    // Reservas simulado
+    document.getElementById('bookingForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const fb = document.getElementById('formFeedback');
+        fb.innerHTML = '📧 Solicitud de reserva enviada. Nuestro equipo de reservas le contactará en menos de 24 horas. ¡Gracias por preferir Hotel Frissman!';
+        fb.style.color = '#b36b2a';
+        fb.style.fontWeight = '500';
+        e.target.reset();
+    });
+
+    // Newsletter
+    document.getElementById('newsBtn')?.addEventListener('click', () => {
+        const email = document.getElementById('newsEmail').value;
+        const msgDiv = document.getElementById('newsMsg');
+        if(email.includes('@') && email.includes('.')) {
+            msgDiv.innerHTML = '✅ Suscripción exitosa. Recibirás ofertas y novedades.';
+            msgDiv.style.color = '#d4e6d4';
+            document.getElementById('newsEmail').value = '';
+        } else {
+            msgDiv.innerHTML = '❌ Por favor ingrese un correo válido.';
+            msgDiv.style.color = '#ffccaa';
+        }
+    });
+
+    // Form contacto por departamento
+    document.getElementById('contactFormDept')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const deptSelect = document.getElementById('department');
+        const dept = deptSelect.options[deptSelect.selectedIndex].text;
+        const feedback = document.getElementById('contactFeedback');
+        feedback.innerHTML = `✅ Mensaje enviado al departamento de ${dept}. Respuesta en máximo 24 horas. ¡Gracias por contactarnos!`;
+        feedback.style.color = '#2c6e2f';
+        e.target.reset();
+    });
+
+</script>
+
+</body>
+</html>
